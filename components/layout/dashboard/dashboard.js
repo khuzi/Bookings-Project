@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image";
+
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -196,6 +198,15 @@ export default function PersistentDrawerLeft() {
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
         <Button className={classes.btn}>Click Me</Button>
+        <div style={{ width: "100%" }}>
+          <Image
+            style={{ display: "none", width: "300px", height: "100px" }}
+            src="/images/pic.jfif"
+            alt="Picture of the author"
+            width={500}
+            height={500}
+          />
+        </div>
       </main>
     </div>
   );
