@@ -5,8 +5,7 @@ import Dashboard from "./dashboard/dashboard";
 const Layout = ({ children }) => {
   return (
     <>
-      <Dashboard />
-      {children}
+      <Dashboard content={children} />
     </>
   );
 };
