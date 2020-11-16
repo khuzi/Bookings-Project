@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { Height } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -8,6 +9,10 @@ const useStyles = makeStyles((theme) => ({
     "& > * + *": {
       marginLeft: theme.spacing(2),
     },
+    width: "100%",
+    height: "100vh",
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));
 

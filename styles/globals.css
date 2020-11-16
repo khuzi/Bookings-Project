@@ -1,3 +1,5 @@
+*::after,
+*::before,
 * {
   margin: 0;
   padding: 0;
@@ -30,7 +32,6 @@ img {
 .mainWarper {
   max-width: 1200px;
   margin: auto;
-  height: 100%;
 }
 
 body::-webkit-scrollbar {
@@ -44,4 +45,12 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: #414141;
   outline: 1px solid slategrey;
+}
+
+.date-picker .MuiInput-underline:before {
+  display: none;
+}
+
+.date-picker .MuiInputBase-input {
+  display: none;
 }

@@ -7,7 +7,7 @@ import { Spinner } from "../components/ui";
 import { theme } from "../utility";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider, StylesProvider } from "@material-ui/core/styles";
 
 import "../styles/globals.css";
 
@@ -38,14 +38,16 @@ function MyApp({ Component, pageProps }) {
   }, []);
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {loading ? (
-        <Spinner />
-      ) : (
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      )}
+      <StylesProvider injectFirst>
+        <CssBaseline />
+        {loading ? (
+          <Spinner />
+        ) : (
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        )}
+      </StylesProvider>
     </ThemeProvider>
   );
 }

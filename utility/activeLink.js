@@ -13,12 +13,12 @@ export function ActiveLink({ children, href, activeClass, normalClass }) {
     <Link href={href}>
       <a
         onClick={handleClick}
-        className={router.pathname === href ? activeClass : normalClass}
+        className={
+          router.pathname === `/bookings${href}` ? activeClass : normalClass
+        }
       >
         {children}
       </a>
     </Link>
   );
 }
-
-

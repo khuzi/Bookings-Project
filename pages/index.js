@@ -1,5 +1,7 @@
 import Head from "next/head";
 
+import { PageTitle } from "../components/ui";
+
 export default function Home() {
   return (
     <>
@@ -7,7 +9,7 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>Calender</h1>
+      <PageTitle text="Calender" />
     </>
   );
 }
