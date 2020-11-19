@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid #fff",
     boxShadow:
       "0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)",
+    margin: "1rem 0 !important",
   },
   th: {
     background: "#ccc",
@@ -49,9 +50,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function TabAccordion() {
+export function TabAccordion({ ore, name, persons }) {
   const classes = useStyles();
   const [border, setBorder] = useState(false);
+
   return (
     <div className={classes.root}>
       <Accordion
@@ -68,7 +70,7 @@ export function TabAccordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Accordion 1</Typography>
+          <Typography className={classes.heading}>Ore {ore}</Typography>
         </AccordionSummary>
         <AccordionDetails
           style={{ padding: 0 }}
@@ -106,7 +108,7 @@ export function TabAccordion() {
                   align="center"
                   className={classes.tCell}
                 >
-                  4
+                  {persons}
                 </Typography>
               </Grid>
               <Grid item xs={2}></Grid>
@@ -116,14 +118,14 @@ export function TabAccordion() {
                   align="center"
                   className={classes.tCell}
                 >
-                  De Viro R.
+                  {name}
                 </Typography>
               </Grid>
               <Grid item xs={6}></Grid>
               <Grid item xs={1}>
-                <Typography align="center">
+                <div style={{ display: "flex", justifyContent: "center" }}>
                   <i className={`far fa-edit ${classes.edit}`}></i>
-                </Typography>
+                </div>
               </Grid>
             </Grid>
           </Grid>

@@ -1,14 +1,16 @@
-import React, { useReducer } from "react";
+import React, { useContext, useReducer } from "react";
 import Head from "next/head";
 
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import ListIcon from "@material-ui/icons/List";
 import TableChartIcon from "@material-ui/icons/TableChart";
 import ViewColumnIcon from "@material-ui/icons/ViewColumn";
 
 import { PageTitle, LgBtn, DatePicker } from "../components/ui";
-import { TabNav } from "../components";
+import { TabNav, ExportCSV } from "../components";
+
+import { BookingContext } from "../context/bookingFetch";
 
 const useStyles = makeStyles((theme) => ({
   datePicker: {
@@ -49,6 +51,15 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid #000",
     padding: "0 0.5rem",
   },
+  export: {
+    border: "2px solid #555",
+    margin: '0 1rem',
+    width: '5rem'
+  },
+  print: {
+    border: "2px solid lightblue",
+    width: '5rem'
+  },
 }));
 
 const vTabReducer = (currStatus, action) => {
@@ -66,6 +77,7 @@ const vTabReducer = (currStatus, action) => {
 
 const TableBox = ({ status, type, text, dispatch, Icon }) => {
   const boxClasses = useStyles();
+
   return (
     <div
       className={status ? boxClasses.active : boxClasses.normal}
@@ -87,17 +99,25 @@ const Bookings = () => {
     grid: false,
   });
 
+  const valueB = useContext(BookingContext);
+  const { bookings, deleted, noShow, completed, pending } = valueB;
+
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Bookings</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="mainWarper">
         <PageTitle text="Booking" />
-        <Grid container>
+        <Grid container justify="space-between" alignItems="center">
           <LgBtn />
-          <Grid container item xs={6}></Grid>
+          <Grid container item xs={6} justify="flex-end" alignItems="center">
+            <Grid item>
+              <Button className={classes.export}>Export</Button>
+              <Button className={classes.print}>Print</Button>
+            </Grid>
+          </Grid>
         </Grid>
         <Grid container className={classes.datePicker}>
           <Grid
@@ -140,7 +160,13 @@ const Bookings = () => {
             <Typography variant="h4">BOOKING LIST</Typography>
           </Grid>
           <Grid item xs={12}>
-            <TabNav />
+            <TabNav
+              bookings={bookings}
+              pending={pending}
+              deleted={deleted}
+              noShow={noShow}
+              completed={completed}
+            />
           </Grid>
         </Grid>
       </Grid>

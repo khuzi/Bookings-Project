@@ -110,7 +110,7 @@ export default function PersistentDrawerLeft({ content }) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Bookings Management System
           </Typography>
         </Toolbar>
       </AppBar>

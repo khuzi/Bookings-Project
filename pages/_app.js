@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Layout from "../components/layout/layout";
 import { Spinner } from "../components/ui";
 import { theme } from "../utility";
+import BookingContext from "../context/bookingFetch";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider, StylesProvider } from "@material-ui/core/styles";
@@ -43,9 +44,12 @@ function MyApp({ Component, pageProps }) {
         {loading ? (
           <Spinner />
         ) : (
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <BookingContext>
+            <Layout>
+              <CssBaseline />
+              <Component {...pageProps} />
+            </Layout>
+          </BookingContext>
         )}
       </StylesProvider>
     </ThemeProvider>

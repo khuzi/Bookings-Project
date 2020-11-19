@@ -1,5 +1,7 @@
+import React, { useContext } from "react";
+
 import "date-fns";
-import React from "react";
+
 import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
 import {
@@ -9,8 +11,11 @@ import {
 import CalendarTodayOutlinedIcon from "@material-ui/icons/CalendarTodayOutlined";
 import { Typography } from "@material-ui/core";
 
+import { BookingContext } from "../../../context/bookingFetch";
+
 export function DatePicker() {
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const value = useContext(BookingContext);
+  const { date, setDate } = value;
 
   const month_name = (dt) => {
     const mlist = [
@@ -31,9 +36,10 @@ export function DatePicker() {
   };
 
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    setDate(date);
   };
 
+  
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid item xs={6}>
@@ -41,8 +47,9 @@ export function DatePicker() {
           <KeyboardDatePicker
             keyboardIcon={<CalendarTodayOutlinedIcon color="primary" />}
             margin="normal"
-            value={selectedDate}
+            value={date}
             onChange={handleDateChange}
+            format="yyyy-MM-ddd"
             KeyboardButtonProps={{
               "aria-label": "change date",
             }}
@@ -51,8 +58,8 @@ export function DatePicker() {
       </Grid>
       <Grid item xs={6} style={{ textAlign: "right" }}>
         <Typography variant="h5">
-          {`${selectedDate.getDate()}
-          ${month_name(new Date(selectedDate))}`}
+          {`${date.getDate()}
+          ${month_name(new Date(date))}`}
         </Typography>
       </Grid>
     </MuiPickersUtilsProvider>

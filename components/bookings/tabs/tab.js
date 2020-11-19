@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function TabNav() {
+export function TabNav({ bookings, pending, deleted, noShow, completed }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -80,19 +80,62 @@ export function TabNav() {
           <Tab className={classes.tab} label="COMPLETED" {...a11yProps(1)} />
           <Tab className={classes.tab} label="DELETED" {...a11yProps(2)} />
           <Tab className={classes.tab} label="NO-SHOW" {...a11yProps(3)} />
+          <Tab className={classes.tab} label="PENDING" {...a11yProps(4)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <TabAccordion />
+        {bookings ? (
+          bookings.map((item) => (
+            <TabAccordion
+              key={item._id}
+              ore={item.hours}
+              persons={item.persons}
+              name={item.name}
+            />
+          ))
+        ) : (
+          <p style={{ textAlign: "center" }}>Loading...!</p>
+        )}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <TabAccordion />
+        {completed?.map((item) => (
+          <TabAccordion
+            key={item._id}
+            ore={item.hours}
+            persons={item.persons}
+            name={item.name}
+          />
+        ))}
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <TabAccordion />
+        {deleted?.map((item) => (
+          <TabAccordion
+            key={item._id}
+            ore={item.hours}
+            persons={item.persons}
+            name={item.name}
+          />
+        ))}
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <TabAccordion />
+        {noShow?.map((item) => (
+          <TabAccordion
+            key={item._id}
+            ore={item.hours}
+            persons={item.persons}
+            name={item.name}
+          />
+        ))}
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        {pending?.map((item) => (
+          <TabAccordion
+            key={item._id}
+            ore={item.hours}
+            persons={item.persons}
+            name={item.name}
+          />
+        ))}
       </TabPanel>
     </div>
   );
