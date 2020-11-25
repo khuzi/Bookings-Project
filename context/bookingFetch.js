@@ -14,6 +14,7 @@ export default function BookingFetch({ children }) {
   const [bookingHeader, setBookingHeader] = useState();
 
   const [date, setDate] = useState(new Date());
+  const [month, setMonth] = useState('');
 
   const filter = (array, status, setFunc) => {
     const FilterArray = array.filter((el) => el.status === status);
@@ -65,6 +66,8 @@ export default function BookingFetch({ children }) {
         completed,
         bookingData,
         bookingHeader,
+        month,
+        setMonth,
       }}
     >
       {children}

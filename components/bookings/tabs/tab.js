@@ -15,6 +15,7 @@ function TabPanel(props) {
 
   return (
     <div
+      style={{ background: "#fff", minHeight: "81px" }}
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
@@ -45,18 +46,27 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "#fff",
+    marginTop: "0.5rem",
+    "& .MuiTab-textColorInherit.Mui-selected": {
+      background: theme.palette.primary.main,
+      color: "#fff",
+      padding: 0,
+    },
+    "& .MuiTabs-indicator": {
+      display: "none",
+    },
   },
   appbar: {
     background: "#fff",
-    border: "1px solid #000",
     boxShadow: "none",
   },
   tab: {
     color: "#000",
-    fontWeight: "600",
-    fontSize: "16px",
+    fontSize: "14px",
+    minHeight: "2rem",
+    textTransform: "capitalize",
+    border: '1px solid #eee'
   },
 }));
 
@@ -76,11 +86,11 @@ export function TabNav({ bookings, pending, deleted, noShow, completed }) {
           onChange={handleChange}
           aria-label="simple tabs example"
         >
-          <Tab className={classes.tab} label="ALL" {...a11yProps(0)} />
-          <Tab className={classes.tab} label="COMPLETED" {...a11yProps(1)} />
-          <Tab className={classes.tab} label="DELETED" {...a11yProps(2)} />
-          <Tab className={classes.tab} label="NO-SHOW" {...a11yProps(3)} />
-          <Tab className={classes.tab} label="PENDING" {...a11yProps(4)} />
+          <Tab className={classes.tab} label="All" {...a11yProps(0)} />
+          <Tab className={classes.tab} label="Completed" {...a11yProps(1)} />
+          <Tab className={classes.tab} label="Deleted" {...a11yProps(2)} />
+          <Tab className={classes.tab} label="No-Show" {...a11yProps(3)} />
+          <Tab className={classes.tab} label="Pending" {...a11yProps(4)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -91,6 +101,7 @@ export function TabNav({ bookings, pending, deleted, noShow, completed }) {
               ore={item.hours}
               persons={item.persons}
               name={item.name}
+              status={item.status}
             />
           ))
         ) : (
@@ -104,6 +115,7 @@ export function TabNav({ bookings, pending, deleted, noShow, completed }) {
             ore={item.hours}
             persons={item.persons}
             name={item.name}
+            status={item.status}
           />
         ))}
       </TabPanel>
@@ -114,6 +126,7 @@ export function TabNav({ bookings, pending, deleted, noShow, completed }) {
             ore={item.hours}
             persons={item.persons}
             name={item.name}
+            status={item.status}
           />
         ))}
       </TabPanel>
@@ -124,6 +137,7 @@ export function TabNav({ bookings, pending, deleted, noShow, completed }) {
             ore={item.hours}
             persons={item.persons}
             name={item.name}
+            status={item.status}
           />
         ))}
       </TabPanel>
@@ -134,6 +148,7 @@ export function TabNav({ bookings, pending, deleted, noShow, completed }) {
             ore={item.hours}
             persons={item.persons}
             name={item.name}
+            status={item.status}
           />
         ))}
       </TabPanel>
