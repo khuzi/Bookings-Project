@@ -53,7 +53,6 @@ let bg = null;
 
 export function TabAccordion({ ore, name, persons, status }) {
   const classes = useStyles();
-  const [border, setBorder] = useState(false);
   const [statuscolor, setStatusColor] = useState(false);
 
   const [open, setOpen] = React.useState(false);
@@ -95,15 +94,7 @@ export function TabAccordion({ ore, name, persons, status }) {
       />
 
       <div className={classes.root}>
-        <Accordion
-          className={classes.accordion}
-          style={
-            border
-              ? { borderColor: "var(--primary-color)" }
-              : { borderColor: "#fff" }
-          }
-          onClick={() => setBorder((prevBorder) => !prevBorder)}
-        >
+        <Accordion className={classes.accordion}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon color="primary" />}
             aria-controls="panel1a-content"
@@ -111,10 +102,7 @@ export function TabAccordion({ ore, name, persons, status }) {
           >
             <Typography className={classes.heading}>Ore {ore}</Typography>
           </AccordionSummary>
-          <AccordionDetails
-            style={{ padding: 0 }}
-            onClick={() => setBorder(false)}
-          >
+          <AccordionDetails style={{ padding: 0 }}>
             <Grid container>
               <Grid container item xs={12} className={classes.th}>
                 {tableHead.map((item, i) => (

@@ -1,4 +1,3 @@
-import { da } from "date-fns/locale";
 import React, { useState, createContext, useEffect } from "react";
 
 export const BookingContext = createContext();
@@ -9,12 +8,13 @@ export default function BookingFetch({ children }) {
   const [pending, setPending] = useState();
   const [noShow, setNoShow] = useState();
   const [deleted, setDeleted] = useState();
+  const [bookingType, setBookingType] = useState("bookingLocals");
 
   const [bookingData, setBookingData] = useState();
   const [bookingHeader, setBookingHeader] = useState();
 
   const [date, setDate] = useState(new Date());
-  const [month, setMonth] = useState('');
+  const [month, setMonth] = useState("");
 
   const filter = (array, status, setFunc) => {
     const FilterArray = array.filter((el) => el.status === status);
@@ -28,7 +28,7 @@ export default function BookingFetch({ children }) {
       try {
         const newDate = new Date(date);
         const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-        const url = `http://nappetito-stage.herokuapp.com/api/bookingLocals/5ec503cc434dff29cf56633b/${newDate.getFullYear()}-${
+        const url = `http://nappetito-stage.herokuapp.com/api/${bookingType}/5ec503cc434dff29cf56633b/${newDate.getFullYear()}-${
           newDate.getMonth() + 1
         }-${newDate.getDate()}/all`;
         const res = await fetch(proxyUrl + url);
@@ -53,7 +53,7 @@ export default function BookingFetch({ children }) {
       }
     };
     fetcher();
-  }, [date]);
+  }, [date, bookingType]);
   return (
     <BookingContext.Provider
       value={{
@@ -68,6 +68,8 @@ export default function BookingFetch({ children }) {
         bookingHeader,
         month,
         setMonth,
+        setBookingType,
+        bookingType
       }}
     >
       {children}
