@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import { makeStyles } from "@material-ui/styles";
 import { Button, Grid } from "@material-ui/core";
 
 import { DatePicker } from "../";
-
-import { BookingContext } from "../../../context/bookingFetch";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,11 +36,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const LgBtn = () => {
+export const LgBtn = ({ setBookingType, bookingType, calender }) => {
   const classes = useStyles();
-
-  const value = useContext(BookingContext);
-  const { setBookingType, bookingType } = value;
 
   return (
     <Grid container item xs={6} className={classes.root} alignContent="center">
@@ -72,7 +67,7 @@ export const LgBtn = () => {
             margin: "0.5rem auto",
           }}
         >
-          <DatePicker />
+          {calender && <DatePicker />}
         </div>
       </Grid>
     </Grid>

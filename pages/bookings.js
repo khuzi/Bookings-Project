@@ -118,7 +118,16 @@ const Bookings = () => {
   });
 
   const valueB = useContext(BookingContext);
-  const { bookings, deleted, noShow, completed, pending, month } = valueB;
+  const {
+    bookings,
+    deleted,
+    noShow,
+    completed,
+    pending,
+    month,
+    setBookingType,
+    bookingType,
+  } = valueB;
 
   return (
     <>
@@ -129,7 +138,7 @@ const Bookings = () => {
       <div className="mainWarper">
         <PageTitle text="Bookings" />
         <Grid container justify="space-between" alignItems="center">
-          <LgBtn />
+          <LgBtn setBookingType={setBookingType} bookingType={bookingType} calender/>
           <Grid container item xs={6} justify="flex-end" alignItems="center">
             <Grid item>
               <input
