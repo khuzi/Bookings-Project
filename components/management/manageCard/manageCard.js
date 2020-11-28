@@ -17,7 +17,11 @@ export function ManageCard({ id, rating, name, detailsHandler }) {
       <Grid item xs={6} style={{ paddingLeft: "1rem" }}>
         <Typography
           variant="subtitle1"
-          style={{ fontWeight: "600", fontSize: "large" }}
+          style={{
+            fontWeight: "600",
+            fontSize: "large",
+            textTransform: "capitalize",
+          }}
         >
           {name}
         </Typography>
