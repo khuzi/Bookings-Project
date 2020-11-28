@@ -36,27 +36,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const LgBtn = ({ setBookingType, bookingType, calender }) => {
+export const LgBtn = ({
+  setBookingType,
+  bookingType,
+  calender,
+  management,
+}) => {
   const classes = useStyles();
+
+  let local = "bookingLocals";
+  let experience = "bookingExperiences";
+
+  if (management) {
+    local = "locals";
+    experience = "experiences";
+  }
 
   return (
     <Grid container item xs={6} className={classes.root} alignContent="center">
       <Grid item xs={2}>
         <Button
-          onClick={() => setBookingType("bookingLocals")}
-          className={
-            bookingType === "bookingLocals" ? classes.active : classes.btn
-          }
+          onClick={() => setBookingType(local)}
+          className={bookingType === local ? classes.active : classes.btn}
         >
           Locals
         </Button>
       </Grid>
       <Grid item xs={2}>
         <Button
-          onClick={() => setBookingType("bookingExperiences")}
-          className={
-            bookingType === "bookingExperiences" ? classes.active : classes.btn
-          }
+          onClick={() => setBookingType(experience)}
+          className={bookingType === experience ? classes.active : classes.btn}
         >
           Experince
         </Button>
