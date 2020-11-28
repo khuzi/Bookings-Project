@@ -7,7 +7,7 @@ import { CustomizedRatings } from "../../ui";
 
 import classes from "./manageCard.module.css";
 
-export function ManageCard() {
+export function ManageCard({ rating, name }) {
   return (
     <Grid container className={classes.card}>
       <Grid item xs={6} className={classes.image}>
@@ -15,15 +15,20 @@ export function ManageCard() {
         <img src="/images/1.jpg" />
       </Grid>
       <Grid item xs={6} style={{ paddingLeft: "1rem" }}>
-        <Typography variant="h6">Street Food Festival</Typography>
+        <Typography
+          variant="subtitle1"
+          style={{ fontWeight: "600", fontSize: "large" }}
+        >
+          {name}
+        </Typography>
         <div className={classes.durat}>
           <div className={classes.duration}>
-            <HistoryIcon />
+            <HistoryIcon color="primary" />
             <Typography variant="subtitle1">Duration 3 hrs</Typography>
           </div>
           <div className={classes.rating}>
-            <CustomizedRatings />
-            <Typography>3.8</Typography>
+            <CustomizedRatings rating={rating} />
+            <Typography>{rating}</Typography>
           </div>
         </div>
         <div className={classes.controls}>
