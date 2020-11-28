@@ -13,8 +13,9 @@ const Management = () => {
 
   useEffect(() => {
     setLoading(true);
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url = `http://nappetito-stage.herokuapp.com/api/${manageType}/5ec503cc434dff29cf56633b`;
-    fetch(url)
+    fetch(proxyurl + url)
       .then((response) => response.json())
       .then((contents) => {
         setLoading(false);
