@@ -4,12 +4,13 @@ import Head from "next/head";
 import { Grid } from "@material-ui/core";
 
 import { LgBtn, Spinner } from "../components/ui";
-import { ManageCard } from "../components/management";
+import { ManageCard, ManageDetails } from "../components/management";
 
 const Management = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [manageType, setManageType] = useState("locals");
+  const [details, setDetails] = useState();
 
   useEffect(() => {
     setLoading(true);
@@ -25,7 +26,12 @@ const Management = () => {
         setLoading(false);
         console.log("Can’t access " + url + " response. Blocked by browser?");
       });
+    setDetails(null);
   }, [manageType]);
+
+  const detailsHandler = (id) => {
+    setDetails(data.filter((items) => items._id === id));
+  };
 
   return (
     <>
@@ -45,14 +51,19 @@ const Management = () => {
           <Grid item xs={5}>
             {data.map((item, i) => {
               return (
-                <ManageCard key={i} rating={item.rating} name={item.name} />
+                <ManageCard
+                  key={i}
+                  rating={item.rating}
+                  name={item.name}
+                  id={item._id}
+                  detailsHandler={detailsHandler}
+                />
               );
             })}
           </Grid>
-          <Grid item xs={3}>
-            <div>
-              <h1>Hello</h1>
-            </div>
+          <Grid item xs={4}>
+            {details &&
+              details.map((item) => <ManageDetails key={item._id} {...item} />)}
           </Grid>
         </Grid>
       )}

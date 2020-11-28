@@ -7,7 +7,7 @@ import { CustomizedRatings } from "../../ui";
 
 import classes from "./manageCard.module.css";
 
-export function ManageCard({ rating, name }) {
+export function ManageCard({ id, rating, name, detailsHandler }) {
   return (
     <Grid container className={classes.card}>
       <Grid item xs={6} className={classes.image}>
@@ -36,7 +36,7 @@ export function ManageCard({ rating, name }) {
             <a href="#">Edit</a>
           </div>
           <div>Delete</div>
-          <div>Details</div>
+          <div onClick={() => detailsHandler(id)}>Details</div>
         </div>
       </Grid>
     </Grid>
