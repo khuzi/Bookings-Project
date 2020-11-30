@@ -34,6 +34,10 @@ img {
   margin: auto;
 }
 
+.MuiNativeSelect-icon {
+  color: #fff;
+}
+
 body::-webkit-scrollbar {
   width: 0.8rem;
 }

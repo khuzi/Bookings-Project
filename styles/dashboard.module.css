@@ -1,0 +1,44 @@
+.top {
+  background: #f6f6f6;
+  padding: 0.5rem 0;
+  border-radius: 8px;
+}
+
+.top_content {
+  padding-top: 0.5rem;
+}
+
+.top_btn {
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.top_btn > *:nth-child(1) {
+  background: var(--primary-color);
+  text-transform: capitalize;
+  color: #fff;
+  width: 150px;
+}
+
+.top_img img {
+  width: 240px;
+  display: block;
+  margin: auto;
+}
+
+.middle {
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+.middle_main {
+  padding: 1rem;
+  background: #f6f6f6;
+}
+
+.middle_main_heading {
+  color: var(--primary-color);
+  text-transform: uppercase;
+}

@@ -6,6 +6,7 @@ import Layout from "../components/layout/layout";
 import { Spinner } from "../components/ui";
 import { theme } from "../utility";
 import BookingContext from "../context/bookingFetch";
+import DashboardFetch from "../context/dashboardFetch";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider, StylesProvider } from "@material-ui/core/styles";
@@ -44,12 +45,14 @@ function MyApp({ Component, pageProps }) {
         {loading ? (
           <Spinner />
         ) : (
-          <BookingContext>
-            <Layout>
-              <CssBaseline />
-              <Component {...pageProps} />
-            </Layout>
-          </BookingContext>
+          <DashboardFetch>
+            <BookingContext>
+              <Layout>
+                <CssBaseline />
+                <Component {...pageProps} />
+              </Layout>
+            </BookingContext>
+          </DashboardFetch>
         )}
       </StylesProvider>
     </ThemeProvider>
