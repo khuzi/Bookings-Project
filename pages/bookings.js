@@ -6,6 +6,9 @@ import { makeStyles } from "@material-ui/styles";
 import ListIcon from "@material-ui/icons/List";
 import TableChartIcon from "@material-ui/icons/TableChart";
 import ViewColumnIcon from "@material-ui/icons/ViewColumn";
+import IconButton from '@material-ui/core/IconButton';
+
+import { SearchOutlined } from '@material-ui/icons';
 
 import { PageTitle, LgBtn, DatePicker } from "../components/ui";
 import { TabNav, ExportCSV } from "../components";
@@ -69,13 +72,15 @@ const useStyles = makeStyles((theme) => ({
     "& button": {
       textTransform: "capitalize",
       background: "#fff",
-      border: "1px solid #000",
+      border: "0.5px solid lightgray",
+		borderRadius:"10px",
       textAlign: "center",
       width: "100%",
       Height: "100%",
       padding: "0.5rem 0",
       cursor: "pointer",
       outline: "none",
+
     },
   },
 }));
@@ -117,8 +122,55 @@ const Bookings = () => {
     grid: false,
   });
 
+  var search = "";
+
   const valueB = useContext(BookingContext);
-  const { bookings, deleted, noShow, completed, pending, month } = valueB;
+  const { bookings, deleted, noShow, completed, pending, month, date, setDate, setMonth, setName } = valueB;
+
+	const month_name = (dt) => {
+		const mlist = [
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December",
+		];
+		return mlist[dt.getMonth()];
+	};
+
+	const handleToday = () => {
+		setDate(new Date());
+		const dateText = month_name(new Date()) + " " + new Date().getDate();
+		setMonth(dateText);
+	};
+
+	const handleNext = () => {
+		var next = date;
+		next.setDate(date.getDate()+1);
+		setDate(new Date(next));
+		const dateText = month_name(next) + " " + next.getDate();
+		setMonth(dateText);
+	};
+
+	const handlePrevious = () => {
+		var previous = date;
+		previous.setDate(date.getDate()-1);
+		setDate(new Date(previous));
+		const dateText = month_name(previous) + " " + previous.getDate();
+		setMonth(dateText);
+	};
+
+	const handleName = () => {
+		console.log(search);
+		setName(search)
+	}
 
   return (
     <>
@@ -134,8 +186,8 @@ const Bookings = () => {
             <Grid item>
               <input
                 placeholder="Search for name"
+				value={search}
                 style={{
-                  margin: "auto",
                   background: "#f6f6f6",
                   padding: "0.7rem",
                   border: "none",
@@ -143,6 +195,9 @@ const Bookings = () => {
                   outline: "none",
                 }}
               />
+				<IconButton style={{ marginRight: "auto"}} onClick={handleName}>
+					<SearchOutlined  />
+				</IconButton>
               <Button className={classes.export}>Export</Button>
               <Button className={classes.print}>Print</Button>
             </Grid>
@@ -164,15 +219,15 @@ const Bookings = () => {
           </Typography>
         </Grid>
         <Grid item xs={6}></Grid>
-        <Grid container item xs={3}>
+        <Grid container item  spacing={2} xs={3}>
           <Grid item xs={4} className={classes.cntrlBtn}>
-            <button>Today</button>
+            <button onClick={() => handleToday()}>Today</button>
           </Grid>
           <Grid item xs={4} className={classes.cntrlBtn}>
-            <button>Previous</button>
+            <button onClick={() => handlePrevious()}>Previous</button>
           </Grid>
           <Grid item xs={4} className={classes.cntrlBtn}>
-            <button>Next</button>
+            <button onClick={() => handleNext()}>Next</button>
           </Grid>
         </Grid>
         <Grid item xs={1}></Grid>

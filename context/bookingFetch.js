@@ -8,6 +8,7 @@ export default function BookingFetch({ children }) {
   const [pending, setPending] = useState();
   const [noShow, setNoShow] = useState();
   const [deleted, setDeleted] = useState();
+  const [name, setName] = useState();
   const [bookingType, setBookingType] = useState("bookingLocals");
 
   const [bookingData, setBookingData] = useState();
@@ -28,9 +29,12 @@ export default function BookingFetch({ children }) {
       try {
         const newDate = new Date(date);
         const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-        const url = `http://nappetito-stage.herokuapp.com/api/${bookingType}/5ec503cc434dff29cf56633b/${newDate.getFullYear()}-${
+        var url = `http://nappetito-stage.herokuapp.com/api/${bookingType}/5ec503cc434dff29cf56633b/${newDate.getFullYear()}-${
           newDate.getMonth() + 1
         }-${newDate.getDate()}/all`;
+        if(name){
+        	url = url.concat("?name=" + name);
+		}
         const res = await fetch(proxyUrl + url);
         const data = await res.json();
         setBookings(data);
@@ -53,26 +57,26 @@ export default function BookingFetch({ children }) {
       }
     };
     fetcher();
-  }, [date, bookingType]);
-  return (
-    <BookingContext.Provider
-      value={{
-        bookings,
-        date,
-        setDate,
-        deleted,
-        pending,
-        noShow,
-        completed,
-        bookingData,
-        bookingHeader,
-        month,
-        setMonth,
-        setBookingType,
-        bookingType
-      }}
-    >
-      {children}
-    </BookingContext.Provider>
-  );
+  }, [date, bookingType,name]);
+  return <BookingContext.Provider
+	  value={{
+		  bookings,
+		  date,
+		  setDate,
+		  deleted,
+		  pending,
+		  noShow,
+		  completed,
+		  bookingData,
+		  bookingHeader,
+		  month,
+		  setMonth,
+		  setBookingType,
+		  bookingType,
+		  name,
+		  setName
+	  }}
+  >
+	  {children}
+  </BookingContext.Provider>;
 }
