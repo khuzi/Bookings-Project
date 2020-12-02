@@ -13,7 +13,7 @@ export default function Review({ reviewLocal, reviewExperience }) {
   const router = useRouter();
 
   let reviewData = null;
-  if (router.query || router.params === "local") {
+  if (router.query.review === "local") {
     reviewData = reviewLocal;
   } else {
     reviewData = reviewExperience;
