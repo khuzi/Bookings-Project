@@ -8,6 +8,7 @@ import classes from "./dashBox.module.css";
 const BoxItem = ({ src, txt, total, id }) => {
   let width = null;
   let see = null;
+  let margin = 0;
 
   if (txt === "Reviews") {
     see = "See Reviews";
@@ -19,6 +20,7 @@ const BoxItem = ({ src, txt, total, id }) => {
     width = "50px";
   } else if (txt === "Earnings") {
     width = "38px";
+    margin = "0.5rem";
   } else {
     width = "20px";
   }
@@ -26,7 +28,7 @@ const BoxItem = ({ src, txt, total, id }) => {
     <div style={{ display: "flex", flexFlow: "column" }}>
       <div className={classes.box}>
         <div className={classes.item}>
-          <img style={{ width: width }} src={src} />
+          <img style={{ width: width, marginLeft: margin }} src={src} />
         </div>
         <div className={classes.item}>
           <p>{txt}</p>
