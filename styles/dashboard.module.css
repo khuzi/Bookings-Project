@@ -42,3 +42,11 @@
   color: var(--primary-color);
   text-transform: uppercase;
 }
+
+.notifyBox {
+  width: 95%;
+  margin-left: auto;
+  background: #f6f6f6;
+  padding: 1rem;
+  height: 100%;
+}

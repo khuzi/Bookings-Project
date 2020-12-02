@@ -15,8 +15,4 @@ export const dashboardLinks = [
     href: "/dashboard",
     text: "Dashboard",
   },
-  {
-    href: "/reviews",
-    text: "Reviews",
-  },
 ];

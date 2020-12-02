@@ -3,7 +3,7 @@ import Rating from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import Box from "@material-ui/core/Box";
 
-export function CustomizedRatings({ rating }) {
+export function CustomizedRatings({ rating, size, max = 1 }) {
   let value = null;
   if (rating === 5) {
     value = 1;
@@ -17,9 +17,10 @@ export function CustomizedRatings({ rating }) {
           style={{ color: "var(--primary-color)" }}
           name="customized-empty"
           readOnly
-          max={1}
+          max={max}
           precision={0.5}
           value={value}
+          size={size}
           emptyIcon={<StarBorderIcon fontSize="inherit" />}
         />
       </Box>

@@ -1,0 +1,45 @@
+.tutto {
+  justify-content: space-between;
+  width: 500px;
+  display: flex;
+  height: 2.5rem;
+}
+
+.tutto > *:first-child {
+  color: #fff;
+  background: var(--primary-color);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.tutto > div {
+  display: flex;
+  border: 1px solid #f6f6f6;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.rat_num {
+  margin-top: 0.1rem;
+}
+
+.rat_star {
+  margin-top: 1.7rem;
+}
+
+.middle {
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+.middle_main {
+  padding: 1rem;
+  background: #f6f6f6;
+}
+
+.middle_main_heading {
+  color: var(--primary-color);
+  text-transform: uppercase;
+}
+
