@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import { Grid, Typography } from "@material-ui/core";
 
@@ -8,7 +9,16 @@ import { ReviewBox } from "../../components/reviews";
 
 import classes from "../../styles/review.module.css";
 
-export default function Review({ reviewData }) {
+export default function Review({ reviewLocal, reviewExperience }) {
+  const router = useRouter();
+
+  let reviewData = null;
+  if (router.query || router.params === "local") {
+    reviewData = reviewLocal;
+  } else {
+    reviewData = reviewExperience;
+  }
+
   return (
     <>
       <Head>
@@ -44,7 +54,7 @@ export default function Review({ reviewData }) {
                 </Typography>
               </Grid>
             </Grid>
-            {reviewData.map((rev) => {
+            {reviewData?.map((rev) => {
               const { _id, postedByName, text, replied } = rev;
               return (
                 <Grid item xs={12} key={_id}>
@@ -67,26 +77,27 @@ export default function Review({ reviewData }) {
 }
 
 export async function getStaticPaths() {
-  const paths = ["/dashboard/local", "/dashboard/xxperience"];
+  const paths = ["/dashboard/local", "/dashboard/experience"];
   return { paths, fallback: true };
 }
 
 export async function getStaticProps({ query, params }) {
   const { id } = query || params;
 
-  let endpoint = "Local/5ec503cc434dff29cf56633b";
-  if (id === "experience") {
-    endpoint = "Experience/5fa3eb9f9412c3fe0513ddc6";
-  }
-
-  const res = await fetch(
-    ` http://nappetito-stage.herokuapp.com/api/reviews${endpoint}`
+  const local = await fetch(
+    "http://nappetito-stage.herokuapp.com/api/reviewsLocal/5ec503cc434dff29cf56633b"
   );
-  const reviewData = await res.json();
+  const reviewLocal = await local.json();
+
+  const experience = await fetch(
+    `http://nappetito-stage.herokuapp.com/api/reviewsExperience/5fa3eb9f9412c3fe0513ddc6`
+  );
+  const reviewExperience = await experience.json();
 
   return {
     props: {
-      reviewData,
+      reviewLocal,
+      reviewExperience,
     },
   };
 }
