@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -9,15 +9,85 @@ import { ReviewBox } from "../../components/reviews";
 
 import classes from "../../styles/review.module.css";
 
+const RatDescp = ({ reviewCount, title }) => {
+  return (
+    <Grid container justify="space-between" className={classes.ratDecp}>
+      <Grid container item xs={6}>
+        <Grid item xs={3}>
+          {reviewCount === 0 || reviewCount > 0 && (
+            <Typography variant="h5">{reviewCount}</Typography>
+          )}
+        </Grid>
+        <Grid item xs={6}>
+          <div style={{ marginTop: "0.4rem" }}>
+            <CustomizedRatings max={5} revRat={`${reviewCount}`} size="small" />
+          </div>
+        </Grid>
+      </Grid>
+      <Grid item xs={6}>
+        <Typography
+          style={{ marginTop: "0.3rem" }}
+          variant="subtitle1"
+          align="right"
+        >
+          {title}
+        </Typography>
+      </Grid>
+    </Grid>
+  );
+};
+
 export default function Review({ reviewLocal, reviewExperience }) {
   const router = useRouter();
 
+  const type = router.query.review;
+
   let reviewData = null;
-  if (router.query.review === "local") {
+  if (type === "local") {
     reviewData = reviewLocal;
   } else {
     reviewData = reviewExperience;
   }
+
+  const [reviewsSimple, setReviewsSimple] = useState();
+  const [reviewsBooking, setReviewsBooking] = useState();
+  const [reviewsTotal, setReviewsTotal] = useState();
+
+  useEffect(() => {
+    let id = "5ec503cc434dff29cf56633b";
+    let typeFetch = "publicLocal";
+    if (type === "experience") {
+      id = "5fa3eb9f9412c3fe0513ddc6";
+      typeFetch = "publicExperience";
+    }
+    fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
+      .then((res) => res.json())
+      .then((data) => setReviewsSimple(data));
+  }, []);
+
+  useEffect(() => {
+    let id = "5ec503cc434dff29cf56633b";
+    let typeFetch = "bookingLocal";
+    if (type === "experience") {
+      id = "5fa3eb9f9412c3fe0513ddc6";
+      typeFetch = "bookingExperience";
+    }
+    fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
+      .then((res) => res.json())
+      .then((data) => setReviewsBooking(data));
+  }, []);
+
+  useEffect(() => {
+    let id = "5ec503cc434dff29cf56633b";
+    let typeFetch = "totalLocal";
+    if (type === "experience") {
+      id = "5fa3eb9f9412c3fe0513ddc6";
+      typeFetch = "totalExperience";
+    }
+    fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
+      .then((res) => res.json())
+      .then((data) => setReviewsTotal(data));
+  }, []);
 
   const month_name = (dt) => {
     const date = new Date(dt);
@@ -59,7 +129,7 @@ export default function Review({ reviewLocal, reviewExperience }) {
           ))}
         </div>
         <Grid container className={classes.middle}>
-          <Grid container item xs={9} className={classes.middle_main}>
+          <Grid container item xs={8} className={classes.middle_main}>
             <Grid
               container
               item
@@ -93,13 +163,36 @@ export default function Review({ reviewLocal, reviewExperience }) {
                     ratText="Valutazione Complessiva"
                     review={text}
                     replied={replied}
-                    revRat={rating}         
+                    revRat={rating}
                   />
                 </Grid>
               );
             })}
           </Grid>
-          <Grid item xs={3}></Grid>
+          <Grid item xs={4}>
+            <div className={classes.ratingBox}>
+              {[
+                {
+                  title: "Reviews",
+                  ratings: reviewsSimple,
+                },
+                {
+                  title: "Booking Reviews",
+                  ratings: reviewsBooking,
+                },
+                {
+                  title: "Total Reviews",
+                  ratings: reviewsTotal,
+                },
+              ]?.map((item, i) => (
+                <RatDescp
+                  key={i}
+                  title={item.title}
+                  reviewCount={item.ratings}
+                />
+              ))}
+            </div>
+          </Grid>
         </Grid>
       </div>
     </>
@@ -111,9 +204,7 @@ export async function getStaticPaths() {
   return { paths, fallback: true };
 }
 
-export async function getStaticProps({ query, params }) {
-  const { id } = query || params;
-
+export async function getStaticProps() {
   const local = await fetch(
     "http://nappetito-stage.herokuapp.com/api/reviewsLocal/5ec503cc434dff29cf56633b"
   );
