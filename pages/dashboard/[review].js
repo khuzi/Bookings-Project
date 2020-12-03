@@ -19,6 +19,28 @@ export default function Review({ reviewLocal, reviewExperience }) {
     reviewData = reviewExperience;
   }
 
+  const month_name = (dt) => {
+    const date = new Date(dt);
+    const mlist = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    return `${date.getDate()}-${mlist[date.getMonth()].slice(
+      0,
+      3
+    )}-${date.getFullYear()}`;
+  };
+
   return (
     <>
       <Head>
@@ -55,15 +77,23 @@ export default function Review({ reviewLocal, reviewExperience }) {
               </Grid>
             </Grid>
             {reviewData?.map((rev) => {
-              const { _id, postedByName, text, replied } = rev;
+              const {
+                _id,
+                postedByName,
+                text,
+                replied,
+                createdAt,
+                rating,
+              } = rev;
               return (
                 <Grid item xs={12} key={_id}>
                   <ReviewBox
                     name={postedByName}
-                    date="15 Oct - 18 Oct 2020 - Pick's Pub"
+                    date={`${month_name(createdAt)} - Pick's Pub`}
                     ratText="Valutazione Complessiva"
                     review={text}
                     replied={replied}
+                    revRat={rating}         
                   />
                 </Grid>
               );
