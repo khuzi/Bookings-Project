@@ -125,6 +125,7 @@ const Bookings = () => {
   var search = "";
 
   const valueB = useContext(BookingContext);
+<<<<<<< HEAD
   const { bookings, deleted, noShow, completed, pending, month, date, setDate, setMonth, setName } = valueB;
 
 	const month_name = (dt) => {
@@ -171,6 +172,18 @@ const Bookings = () => {
 		console.log(search);
 		setName(search)
 	}
+=======
+  const {
+    bookings,
+    deleted,
+    noShow,
+    completed,
+    pending,
+    month,
+    setBookingType,
+    bookingType,
+  } = valueB;
+>>>>>>> c4187ad20ce3beaa0f5090f8d10787c4484f3478
 
   return (
     <>
@@ -181,7 +194,7 @@ const Bookings = () => {
       <div className="mainWarper">
         <PageTitle text="Bookings" />
         <Grid container justify="space-between" alignItems="center">
-          <LgBtn />
+          <LgBtn setBookingType={setBookingType} bookingType={bookingType} calender/>
           <Grid container item xs={6} justify="flex-end" alignItems="center">
             <Grid item>
               <input

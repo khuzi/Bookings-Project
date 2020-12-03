@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import { makeStyles } from "@material-ui/styles";
 import { Button, Grid } from "@material-ui/core";
 
 import { DatePicker } from "../";
-
-import { BookingContext } from "../../../context/bookingFetch";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,30 +36,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const LgBtn = () => {
+export const LgBtn = ({
+  setBookingType,
+  bookingType,
+  calender,
+  management,
+}) => {
   const classes = useStyles();
 
-  const value = useContext(BookingContext);
-  const { setBookingType, bookingType } = value;
+  let local = "bookingLocals";
+  let experience = "bookingExperiences";
+
+  if (management) {
+    local = "locals";
+    experience = "experiences";
+  }
 
   return (
     <Grid container item xs={6} className={classes.root} alignContent="center">
       <Grid item xs={2}>
         <Button
-          onClick={() => setBookingType("bookingLocals")}
-          className={
-            bookingType === "bookingLocals" ? classes.active : classes.btn
-          }
+          onClick={() => setBookingType(local)}
+          className={bookingType === local ? classes.active : classes.btn}
         >
           Locals
         </Button>
       </Grid>
       <Grid item xs={2}>
         <Button
-          onClick={() => setBookingType("bookingExperiences")}
-          className={
-            bookingType === "bookingExperiences" ? classes.active : classes.btn
-          }
+          onClick={() => setBookingType(experience)}
+          className={bookingType === experience ? classes.active : classes.btn}
         >
           Experince
         </Button>
@@ -72,7 +76,7 @@ export const LgBtn = () => {
             margin: "0.5rem auto",
           }}
         >
-          <DatePicker />
+          {calender && <DatePicker />}
         </div>
       </Grid>
     </Grid>
