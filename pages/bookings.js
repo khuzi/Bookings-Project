@@ -172,18 +172,6 @@ const Bookings = () => {
 		console.log(search);
 		setName(search)
 	}
-=======
-  const {
-    bookings,
-    deleted,
-    noShow,
-    completed,
-    pending,
-    month,
-    setBookingType,
-    bookingType,
-  } = valueB;
->>>>>>> c4187ad20ce3beaa0f5090f8d10787c4484f3478
 
   return (
     <>

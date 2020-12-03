@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import Head from "next/head";
 
-import { DashBordContext } from "../context/dashboardFetch";
+import { DashBordContext } from "../../context/dashboardFetch";
 
 import { Grid, Typography, Button } from "@material-ui/core";
 
-import { DashBox } from "../components";
-import { CustomizedSelects } from "../components/ui";
+import { DashBox, NotifyCard } from "../../components";
+import { CustomizedSelects } from "../../components/ui";
 
-import classes from "../styles/dashboard.module.css";
+import classes from "../../styles/dashboard.module.css";
 
 export default function dashboard() {
-  const { bookings, completed, deleted, noShow } = useContext(DashBordContext);
+  const { experience, local } = useContext(DashBordContext);
   return (
     <>
       <Head>
@@ -48,26 +48,37 @@ export default function dashboard() {
                   dashboard
                 </Typography>
               </Grid>
-              <Grid xs={2} className={classes.middle_main_select}>
+              <Grid item xs={2} className={classes.middle_main_select}>
                 <CustomizedSelects />
               </Grid>
             </Grid>
             <Grid item xs={12}>
               <DashBox
-                totalBookings={bookings}
-                completed={completed}
-                deleted={deleted}
-                noShow={noShow}
+                data={local}
+                title="pick's pub"
+                id="local"
               />
               <DashBox
-                totalBookings={bookings}
-                completed={completed}
-                deleted={deleted}
-                noShow={noShow}
+                data={experience}
+                title="street food experience"
+                id="experience"
               />
             </Grid>
           </Grid>
-          <Grid item xs={3}></Grid>
+          <Grid item xs={3}>
+            <div className={classes.notifyBox}>
+              <Typography className={classes.middle_main_heading} variant="h">
+                notify
+              </Typography>
+              {[1, 2, 3].map((_, i) => (
+                <NotifyCard
+                  key={i}
+                  txt1="Read the review that Shopie left you."
+                  txt2="3 days ago"
+                />
+              ))}
+            </div>
+          </Grid>
         </Grid>
       </div>
     </>
