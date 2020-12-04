@@ -1,12 +1,27 @@
 import React from "react";
 
-import { Typography, Grid, Button } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 
 import { CustomizedRatings } from "../../ui";
+import { Answer } from "../";
 
 import classes from "./reviewBox.module.css";
 
-export function ReviewBox({ name, date, review, ratText, replied }) {
+export function ReviewBox({
+  name,
+  date,
+  review,
+  ratText,
+  revRat,
+  comments,
+  id,
+}) {
+  const [answers, setAnswers] = React.useState();
+  React.useEffect(() => {
+    const text = comments.map(({ text }) => text);
+    setAnswers(text);
+  }, [comments]);
+
   return (
     <div className={classes.reviewBox}>
       <Typography variant="h5">{name}</Typography>
@@ -18,16 +33,14 @@ export function ReviewBox({ name, date, review, ratText, replied }) {
           {ratText}
         </Typography>
         <div style={{ marginTop: "0.15rem" }}>
-          <CustomizedRatings size="small" max={5} rating="5" />
+          <CustomizedRatings size="small" max={5} revRat={revRat} />
         </div>
       </div>
       <Typography style={{ maxWidth: "90%" }} variant="subtitle2">
         {review}
       </Typography>
       <Grid container justify="flex-end">
-        <Button className={classes.ans_btn}>
-          {replied ? "Answer" : "See Answer"}
-        </Button>
+        <Answer answer={answers} id={id} />
       </Grid>
     </div>
   );

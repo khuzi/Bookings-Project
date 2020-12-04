@@ -43,3 +43,16 @@
   text-transform: uppercase;
 }
 
+.ratingBox {
+  background: #f6f6f6;
+  width: 95%;
+  margin-left: auto;
+  padding: 1rem;
+  padding-top: 4rem;
+}
+.ratDecp {
+  background: #fff;
+  padding: 1rem;
+  padding-bottom: 0;
+  margin-bottom: 1rem;
+}
