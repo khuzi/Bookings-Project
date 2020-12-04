@@ -14,10 +14,10 @@ const RatDescp = ({ reviewCount, title }) => {
     <Grid container justify="space-between" className={classes.ratDecp}>
       <Grid container item xs={6}>
         <Grid item xs={3}>
-          {reviewCount === 0 ||
-            (reviewCount > 0 && (
-              <Typography variant="h5">{reviewCount}</Typography>
-            ))}
+          {/* {reviewCount === 0 ||
+            (reviewCount > 0 && ( */}
+          <Typography variant="h5">{reviewCount}</Typography>
+          {/* ))} */}
         </Grid>
         <Grid item xs={6}>
           <div style={{ marginTop: "0.4rem" }}>
@@ -53,8 +53,6 @@ export default function Review({ reviewLocal, reviewExperience }) {
   const [reviewsSimple, setReviewsSimple] = useState();
   const [reviewsBooking, setReviewsBooking] = useState();
   const [reviewsTotal, setReviewsTotal] = useState();
-
- 
 
   useEffect(() => {
     let id = "5ec503cc434dff29cf56633b";
@@ -205,12 +203,12 @@ export default function Review({ reviewLocal, reviewExperience }) {
   );
 }
 
-// export async function getStaticPaths() {
-//   const paths = ["/dashboard/local", "/dashboard/experience"];
-//   return { paths, fallback: true };
-// }
+export async function getStaticPaths() {
+  const paths = ["/dashboard/local", "/dashboard/experience"];
+  return { paths, fallback: true };
+}
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const local = await fetch(
     "http://nappetito-stage.herokuapp.com/api/reviewsLocal/5ec503cc434dff29cf56633b"
   );
