@@ -64,7 +64,7 @@ export default function Review({ reviewLocal, reviewExperience }) {
     fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
       .then((res) => res.json())
       .then((data) => setReviewsSimple(data));
-  }, []);
+  }, [type]);
 
   useEffect(() => {
     let id = "5ec503cc434dff29cf56633b";
@@ -76,7 +76,7 @@ export default function Review({ reviewLocal, reviewExperience }) {
     fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
       .then((res) => res.json())
       .then((data) => setReviewsBooking(data));
-  }, []);
+  }, [type]);
 
   useEffect(() => {
     let id = "5ec503cc434dff29cf56633b";
@@ -88,7 +88,7 @@ export default function Review({ reviewLocal, reviewExperience }) {
     fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
       .then((res) => res.json())
       .then((data) => setReviewsTotal(data));
-  }, []);
+  }, [type]);
 
   const month_name = (dt) => {
     const date = new Date(dt);
