@@ -125,7 +125,6 @@ const Bookings = () => {
   var search = "";
 
   const valueB = useContext(BookingContext);
-<<<<<<< HEAD
   const { bookings, deleted, noShow, completed, pending, month, date, setDate, setMonth, setName } = valueB;
 
 	const month_name = (dt) => {
