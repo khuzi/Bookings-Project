@@ -14,10 +14,10 @@ const RatDescp = ({ reviewCount, title }) => {
     <Grid container justify="space-between" className={classes.ratDecp}>
       <Grid container item xs={6}>
         <Grid item xs={3}>
-          {/* {reviewCount === 0 ||
-            (reviewCount > 0 && ( */}
-          <Typography variant="h5">{reviewCount}</Typography>
-          {/* ))} */}
+          {reviewCount === 0 ||
+            (reviewCount > 0 && (
+              <Typography variant="h5">{reviewCount}</Typography>
+            ))}
         </Grid>
         <Grid item xs={6}>
           <div style={{ marginTop: "0.4rem" }}>
