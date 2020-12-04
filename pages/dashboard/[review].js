@@ -54,9 +54,7 @@ export default function Review({ reviewLocal, reviewExperience }) {
   const [reviewsBooking, setReviewsBooking] = useState();
   const [reviewsTotal, setReviewsTotal] = useState();
 
-  useEffect(() => {
-    router.reload();
-  }, []);
+ 
 
   useEffect(() => {
     let id = "5ec503cc434dff29cf56633b";
