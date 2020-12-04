@@ -14,9 +14,10 @@ const RatDescp = ({ reviewCount, title }) => {
     <Grid container justify="space-between" className={classes.ratDecp}>
       <Grid container item xs={6}>
         <Grid item xs={3}>
-          {reviewCount === 0 || reviewCount > 0 && (
-            <Typography variant="h5">{reviewCount}</Typography>
-          )}
+          {reviewCount === 0 ||
+            (reviewCount > 0 && (
+              <Typography variant="h5">{reviewCount}</Typography>
+            ))}
         </Grid>
         <Grid item xs={6}>
           <div style={{ marginTop: "0.4rem" }}>
@@ -154,16 +155,19 @@ export default function Review({ reviewLocal, reviewExperience }) {
                 replied,
                 createdAt,
                 rating,
+                comments,
               } = rev;
               return (
                 <Grid item xs={12} key={_id}>
                   <ReviewBox
+                    id={_id}
                     name={postedByName}
                     date={`${month_name(createdAt)} - Pick's Pub`}
                     ratText="Valutazione Complessiva"
                     review={text}
                     replied={replied}
                     revRat={rating}
+                    comments={comments}
                   />
                 </Grid>
               );
