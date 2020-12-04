@@ -125,7 +125,8 @@ const Bookings = () => {
   var search = "";
 
   const valueB = useContext(BookingContext);
-  const { bookings, deleted, noShow, completed, pending, month, date, setDate, setMonth, setName } = valueB;
+  const { bookings, deleted, noShow, completed, pending, month, date, setDate, setMonth, setName,   setBookingType,
+	  bookingType } = valueB;
 
 	const month_name = (dt) => {
 		const mlist = [
@@ -171,6 +172,7 @@ const Bookings = () => {
 		console.log(search);
 		setName(search)
 	}
+
 
   return (
     <>
