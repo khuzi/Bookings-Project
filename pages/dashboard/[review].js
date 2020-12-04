@@ -205,12 +205,12 @@ export default function Review({ reviewLocal, reviewExperience }) {
   );
 }
 
-export async function getStaticPaths() {
-  const paths = ["/dashboard/local", "/dashboard/experience"];
-  return { paths, fallback: true };
-}
+// export async function getStaticPaths() {
+//   const paths = ["/dashboard/local", "/dashboard/experience"];
+//   return { paths, fallback: true };
+// }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const local = await fetch(
     "http://nappetito-stage.herokuapp.com/api/reviewsLocal/5ec503cc434dff29cf56633b"
   );
