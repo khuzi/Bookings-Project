@@ -6,6 +6,7 @@ import { Grid, Typography } from "@material-ui/core";
 
 import { CustomizedRatings } from "../../components/ui";
 import { ReviewBox } from "../../components/reviews";
+import ReviewTab from "../../components/reviews/reviewTab/reviewTab";
 
 import classes from "../../styles/review.module.css";
 
@@ -64,7 +65,7 @@ export default function Review({ reviewLocal, reviewExperience }) {
     fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
       .then((res) => res.json())
       .then((data) => setReviewsSimple(data));
-  }, [reviewsSimple]);
+  }, []);
 
   useEffect(() => {
     let id = "5ec503cc434dff29cf56633b";
@@ -76,7 +77,7 @@ export default function Review({ reviewLocal, reviewExperience }) {
     fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
       .then((res) => res.json())
       .then((data) => setReviewsBooking(data));
-  }, [reviewsBooking]);
+  }, []);
 
   useEffect(() => {
     let id = "5ec503cc434dff29cf56633b";
@@ -88,7 +89,7 @@ export default function Review({ reviewLocal, reviewExperience }) {
     fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
       .then((res) => res.json())
       .then((data) => setReviewsTotal(data));
-  }, [reviewsTotal]);
+  }, []);
 
   const month_name = (dt) => {
     const date = new Date(dt);
@@ -118,17 +119,7 @@ export default function Review({ reviewLocal, reviewExperience }) {
         <title>Reviews</title>
       </Head>
       <div className={classes.review}>
-        <div className={classes.tutto}>
-          <div>Tutto</div>
-          {[5, 4, 3, 2, 1].map((el, i) => (
-            <div key={i}>
-              <div className={classes.rat_num}>{el}</div>
-              <div className={classes.rat_star}>
-                <CustomizedRatings rating={5} size="small" />
-              </div>
-            </div>
-          ))}
-        </div>
+        <ReviewTab />
         <Grid container className={classes.middle}>
           <Grid container item xs={8} className={classes.middle_main}>
             <Grid
@@ -166,7 +157,7 @@ export default function Review({ reviewLocal, reviewExperience }) {
                     ratText="Valutazione Complessiva"
                     review={text}
                     replied={replied}
-                    revRat={rating}
+                    revRat={Number(rating)}
                     comments={comments}
                   />
                 </Grid>

@@ -3,7 +3,7 @@ import Rating from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import Box from "@material-ui/core/Box";
 
-export function CustomizedRatings({ rating, size, max = 1, revRat }) {
+export function CustomizedRatings({ rating, size, max = 1, revRat, color }) {
   let value = null;
   if (rating === 5 && !revRat) {
     value = 1;
@@ -14,7 +14,7 @@ export function CustomizedRatings({ rating, size, max = 1, revRat }) {
     <div>
       <Box component="fieldset" mb={3} borderColor="transparent">
         <Rating
-          style={{ color: "var(--primary-color)" }}
+          style={{ color: color ? color : "var(--primary-color)" }}
           name="customized-empty"
           readOnly
           max={max}
