@@ -62,7 +62,9 @@ export default function Review({ reviewLocal, reviewExperience }) {
       id = "5fa3eb9f9412c3fe0513ddc6";
       typeFetch = "publicExperience";
     }
-    fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
+    fetch(
+      `https://cors-anywhere.herokuapp.com/http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`
+    )
       .then((res) => res.json())
       .then((data) => setReviewsSimple(data));
   }, []);
@@ -74,7 +76,9 @@ export default function Review({ reviewLocal, reviewExperience }) {
       id = "5fa3eb9f9412c3fe0513ddc6";
       typeFetch = "bookingExperience";
     }
-    fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
+    fetch(
+      `https://cors-anywhere.herokuapp.com/http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`
+    )
       .then((res) => res.json())
       .then((data) => setReviewsBooking(data));
   }, []);
@@ -86,7 +90,9 @@ export default function Review({ reviewLocal, reviewExperience }) {
       id = "5fa3eb9f9412c3fe0513ddc6";
       typeFetch = "totalExperience";
     }
-    fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
+    fetch(
+      `https://cors-anywhere.herokuapp.com/http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`
+    )
       .then((res) => res.json())
       .then((data) => setReviewsTotal(data));
   }, []);
