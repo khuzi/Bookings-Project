@@ -24,11 +24,10 @@ export default function dashboard() {
     const fetcher = async () => {
       try {
         const result = await fetch(
-          "http://nappetito-stage.herokuapp.com/api/notification/5ec503cc434dff29cf56633b"
+          "https://cors-anywhere.herokuapp.com/http://nappetito-stage.herokuapp.com/api/notification/5ec503cc434dff29cf56633b"
         );
         const notificationsData = await result.json();
         setNotifications(notificationsData);
-        console.log("Notify Data = ", notificationsData);
       } catch (error) {
         console.log("Notification Error =", error);
       }
