@@ -68,6 +68,61 @@ body::-webkit-scrollbar-thumb {
   margin-bottom: 0.5rem;
 }
 
-.date-picker .MuiButtonBase-root:hover {
+.rbCalender .date-picker .MuiButtonBase-root:hover {
   background: #f6f6f6;
+}
+
+.rbCalender .rbc-event-content {
+  background: var(--primary-color);
+}
+
+.rbCalender .rbc-event {
+  background: var(--primary-color) !important;
+  outline: none !important;
+}
+
+.rbCalender .rbc-off-range-bg {
+  background: #fff !important;
+}
+
+.rbCalender .rbc-today {
+  background: #fdeeed !important;
+}
+
+.rbCalender .rbc-active {
+  background: var(--primary-color) !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.rbCalender .rbc-active:hover {
+  color: #fff !important;
+}
+
+.rbCalender .rbc-toolbar {
+  background: #f6f6ff;
+  margin-bottom: 2rem;
+}
+
+.rbCalender .rbc-btn-group {
+  background: #fff;
+}
+
+.rbCalender .rbc-btn-group button {
+  height: 2.5rem;
+  width: 6rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.rbCalender .rbc-btn-group button:focus {
+  border: 1px solid #ccc;
+}
+
+.rbCalender .rbc-month-view {
+  background: #fff;
+}
+
+.rbCalender .rbc-toolbar-label {
+  color: var(--primary-color);
 }

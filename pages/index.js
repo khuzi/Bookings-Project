@@ -3,6 +3,7 @@ import Head from "next/head";
 
 import { Grid, Button } from "@material-ui/core";
 
+import { MyCalender } from "../components/calender";
 import { PageTitle, LgBtn } from "../components/ui";
 
 import classes from "../styles/calender.module.css";
@@ -24,7 +25,9 @@ export default function Home() {
         </Grid>
       </Grid>
       <Grid container className={classes.middleWarper}>
-        <Grid item xs={9} className={classes.calenderBox}></Grid>
+        <Grid item xs={9} className={classes.calenderBox}>
+          <MyCalender />
+        </Grid>
         <Grid item xs={3}>
           <div className={classes.optionsBox}></div>
         </Grid>
