@@ -58,3 +58,16 @@ body::-webkit-scrollbar-thumb {
 .date-picker .MuiInputBase-input {
   display: none;
 }
+
+.date-picker .MuiButtonBase-root {
+  height: 2.5rem;
+  background: #f6f6f6;
+  border-radius: 5px;
+  padding-right: 0;
+  padding-bottom: 0;
+  margin-bottom: 0.5rem;
+}
+
+.date-picker .MuiButtonBase-root:hover {
+  background: #f6f6f6;
+}

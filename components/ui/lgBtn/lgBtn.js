@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     background: "#f6f6f6",
     borderTopLeftRadius: "0",
     borderBottomLeftRadius: "0",
-    color: "#000",
+    color: "var(--primary-color)",
     "&:hover": {
       background: "#f6f6f6",
     },
@@ -41,6 +41,7 @@ export const LgBtn = ({
   bookingType,
   calender,
   management,
+  col
 }) => {
   const classes = useStyles();
 
@@ -53,7 +54,7 @@ export const LgBtn = ({
   }
 
   return (
-    <Grid container item xs={6} className={classes.root} alignContent="center">
+    <Grid container item xs={col} className={classes.root} alignContent="center">
       <Grid item xs={2}>
         <Button
           onClick={() => setBookingType(local)}

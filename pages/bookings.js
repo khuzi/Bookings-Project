@@ -135,29 +135,33 @@ const Bookings = () => {
         <title>Bookings</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="mainWarper">
-        <PageTitle text="Bookings" />
-        <Grid container justify="space-between" alignItems="center">
-          <LgBtn setBookingType={setBookingType} bookingType={bookingType} calender/>
-          <Grid container item xs={6} justify="flex-end" alignItems="center">
-            <Grid item>
-              <input
-                placeholder="Search for name"
-                style={{
-                  margin: "auto",
-                  background: "#f6f6f6",
-                  padding: "0.7rem",
-                  border: "none",
-                  borderRadius: "5px",
-                  outline: "none",
-                }}
-              />
-              <Button className={classes.export}>Export</Button>
-              <Button className={classes.print}>Print</Button>
-            </Grid>
+      <PageTitle text="Bookings" />
+      <Grid container justify="space-between" alignItems="center">
+        <LgBtn
+          col={6}
+          setBookingType={setBookingType}
+          bookingType={bookingType}
+          calender
+        />
+        <Grid container item xs={6} justify="flex-end" alignItems="center">
+          <Grid item>
+            <input
+              placeholder="Search for name"
+              style={{
+                margin: "auto",
+                background: "#f6f6f6",
+                padding: "0.7rem",
+                border: "none",
+                borderRadius: "5px",
+                outline: "none",
+              }}
+            />
+            <Button className={classes.export}>Export</Button>
+            <Button className={classes.print}>Print</Button>
           </Grid>
         </Grid>
-      </div>
+      </Grid>
+
       <Grid
         container
         justify="space-between"
