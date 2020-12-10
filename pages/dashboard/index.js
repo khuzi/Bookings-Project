@@ -1,5 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Head from "next/head";
+
+import TimeAgo from "react-timeago";
+import strings from "react-timeago/lib/language-strings/en";
+import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 
 import { DashBordContext } from "../../context/dashboardFetch";
 
@@ -10,8 +14,28 @@ import { CustomizedSelects } from "../../components/ui";
 
 import classes from "../../styles/dashboard.module.css";
 
+const formatter = buildFormatter(strings);
+
 export default function dashboard() {
   const { experience, local } = useContext(DashBordContext);
+  const [notifications, setNotifications] = useState();
+
+  useEffect(() => {
+    const fetcher = async () => {
+      try {
+        const result = await fetch(
+          "http://nappetito-stage.herokuapp.com/api/notification/5ec503cc434dff29cf56633b"
+        );
+        const notificationsData = await result.json();
+        setNotifications(notificationsData);
+        console.log("Notify Data = ", notificationsData);
+      } catch (error) {
+        console.log("Notification Error =", error);
+      }
+    };
+    fetcher();
+  }, []);
+
   return (
     <>
       <Head>
@@ -53,11 +77,7 @@ export default function dashboard() {
               </Grid>
             </Grid>
             <Grid item xs={12}>
-              <DashBox
-                data={local}
-                title="pick's pub"
-                id="local"
-              />
+              <DashBox data={local} title="pick's pub" id="local" />
               <DashBox
                 data={experience}
                 title="street food experience"
@@ -70,11 +90,11 @@ export default function dashboard() {
               <Typography className={classes.middle_main_heading} variant="h">
                 notify
               </Typography>
-              {[1, 2, 3].map((_, i) => (
+              {notifications?.map(({ _id, message, createdAt }) => (
                 <NotifyCard
-                  key={i}
-                  txt1="Read the review that Shopie left you."
-                  txt2="3 days ago"
+                  key={_id}
+                  txt1={message}
+                  txt2={<TimeAgo date={createdAt} formatter={formatter} />}
                 />
               ))}
             </div>

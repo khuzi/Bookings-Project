@@ -7,13 +7,17 @@ import classes from "./reviewTab.module.css";
 export default function ReviewTab() {
   const [activeItem, setActiveItem] = useState("Tutto");
 
+  const onActive = (item) => {
+    setActiveItem(item);
+  };
+
   return (
     <div className={classes.tutto}>
       {["Tutto", 5, 4, 3, 2, 1].map((el, i) => (
         <div
           key={i}
           className={activeItem === el && classes.active}
-          onClick={() => setActiveItem(el)}
+          onClick={() => onActive(el)}
         >
           <div className={classes.rat_num}>{el}</div>
           <div className={classes.rat_star}>

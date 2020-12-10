@@ -16,7 +16,12 @@
 }
 
 .tutto .active {
+  background: var(--primary-color);
+  transition: background 0.3s ease-in-out;
   color: #fff;
+}
+
+.active:active {
   background: var(--primary-color);
 }
 
