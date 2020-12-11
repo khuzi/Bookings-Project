@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Head from "next/head";
 
 import { Grid, Button } from "@material-ui/core";
 
-import { MyCalender } from "../components/calender";
+import { MyCalender, Options } from "../components/calender";
 import { PageTitle, LgBtn } from "../components/ui";
+
+import { CalenderContext } from "../context/calenderFetch";
 
 import classes from "../styles/calender.module.css";
 
 export default function Home() {
+  const { calType, setCalType } = useContext(CalenderContext);
   return (
     <>
       <Head>
@@ -18,7 +21,12 @@ export default function Home() {
       <PageTitle text="Calender" />
       <Grid container justify="space-between">
         <Grid item xs={6}>
-          <LgBtn calender />
+          <LgBtn
+            calender
+            bookingType={calType}
+            setBookingType={setCalType}
+            management
+          />
         </Grid>
         <Grid container item xs={2} justify="flex-end" alignItems="center">
           <Button className={classes.promo_btn}>Promotions</Button>
@@ -29,7 +37,9 @@ export default function Home() {
           <MyCalender />
         </Grid>
         <Grid item xs={3}>
-          <div className={classes.optionsBox}></div>
+          <div className={classes.optionsBox}>
+            <Options optionType={calType} />
+          </div>
         </Grid>
       </Grid>
     </>

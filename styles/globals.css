@@ -110,7 +110,7 @@ body::-webkit-scrollbar-thumb {
 
 .rbCalender .rbc-btn-group button {
   height: 2.5rem;
-  width: 6rem;
+  width: 5rem;
   cursor: pointer;
   outline: none;
 }

@@ -1,0 +1,16 @@
+.options {
+  color: #393939;
+}
+
+.edDel {
+  text-decoration: underline;
+  color: var(--primary-color);
+  margin: 0 0.5rem;
+}
+
+.availability {
+  padding: 0 1rem;
+  border-radius: 5px;
+  background: #fff;
+  margin: 1rem 0;
+}
