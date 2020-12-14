@@ -66,7 +66,8 @@ export default function Review({ reviewLocal, reviewExperience }) {
       `https://cors-anywhere.herokuapp.com/http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`
     )
       .then((res) => res.json())
-      .then((data) => setReviewsSimple(data));
+      .then((data) => setReviewsSimple(data))
+      .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
@@ -80,7 +81,8 @@ export default function Review({ reviewLocal, reviewExperience }) {
       `https://cors-anywhere.herokuapp.com/http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`
     )
       .then((res) => res.json())
-      .then((data) => setReviewsBooking(data));
+      .then((data) => setReviewsBooking(data))
+      .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
@@ -94,7 +96,8 @@ export default function Review({ reviewLocal, reviewExperience }) {
       `https://cors-anywhere.herokuapp.com/http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`
     )
       .then((res) => res.json())
-      .then((data) => setReviewsTotal(data));
+      .then((data) => setReviewsTotal(data))
+      .catch((err) => console.log(err));
   }, []);
 
   const month_name = (dt) => {

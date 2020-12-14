@@ -11,7 +11,8 @@ import { CalenderContext } from "../context/calenderFetch";
 import classes from "../styles/calender.module.css";
 
 export default function Home() {
-  const { calType, setCalType } = useContext(CalenderContext);
+  const contextValues = useContext(CalenderContext);
+  const { calType, setCalType, showOptions, setShowOptions } = contextValues;
   return (
     <>
       <Head>
@@ -22,6 +23,8 @@ export default function Home() {
       <Grid container justify="space-between">
         <Grid item xs={6}>
           <LgBtn
+            showOptions={showOptions}
+            setShowOptions={setShowOptions}
             calender
             bookingType={calType}
             setBookingType={setCalType}
@@ -37,9 +40,11 @@ export default function Home() {
           <MyCalender />
         </Grid>
         <Grid item xs={3}>
-          <div className={classes.optionsBox}>
-            <Options optionType={calType} />
-          </div>
+          {showOptions && (
+            <div className={classes.optionsBox}>
+              <Options value={contextValues} />
+            </div>
+          )}
         </Grid>
       </Grid>
     </>

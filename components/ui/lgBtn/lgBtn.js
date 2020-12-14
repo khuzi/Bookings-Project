@@ -37,11 +37,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const LgBtn = ({
+  showOptions,
+  setShowOptions,
   setBookingType,
   bookingType,
   calender,
   management,
-  col
+  col,
 }) => {
   const classes = useStyles();
 
@@ -54,10 +56,21 @@ export const LgBtn = ({
   }
 
   return (
-    <Grid container item xs={col} className={classes.root} alignContent="center">
+    <Grid
+      container
+      item
+      xs={col}
+      className={classes.root}
+      alignContent="center"
+    >
       <Grid item xs={2}>
         <Button
-          onClick={() => setBookingType(local)}
+          onClick={() => {
+            setBookingType(local);
+            if (showOptions) {
+              setShowOptions(false);
+            }
+          }}
           className={bookingType === local ? classes.active : classes.btn}
         >
           Locals
@@ -65,7 +78,12 @@ export const LgBtn = ({
       </Grid>
       <Grid item xs={2}>
         <Button
-          onClick={() => setBookingType(experience)}
+          onClick={() => {
+            setBookingType(experience);
+            if (showOptions) {
+              setShowOptions(false);
+            }
+          }}
           className={bookingType === experience ? classes.active : classes.btn}
         >
           Experince

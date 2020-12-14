@@ -25,7 +25,48 @@ const experienceEvents = [
 ];
 
 export const MyCalender = () => {
-  const { calType } = useContext(CalenderContext);
+  const { calType, setShowOptions, setStartDate, setEndDate } = useContext(
+    CalenderContext
+  );
+
+  const month_name = (dt) => {
+    const mlist = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    return mlist[dt.getMonth()].slice(0, 3);
+  };
+
+  const day_name = (dt) => {
+    const dlist = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ];
+    return dlist[dt.getDay()].slice(0, 3);
+  };
+
+  const onEvent = (e) => {
+    const start = new Date(e.start);
+    const end = new Date(e.end);
+    setShowOptions(true);
+    setStartDate(`${day_name(start)}, ${month_name(start)} ${start.getDate()}`);
+    setEndDate(`${day_name(end)}, ${month_name(end)} ${end.getDate()}`);
+  };
 
   return (
     <div className="rbCalender">
@@ -35,10 +76,7 @@ export const MyCalender = () => {
         defaultView="month"
         events={calType === "locals" ? localEvents : experienceEvents}
         style={{ height: "100vh" }}
-        // onSelectEvent={(e) => {
-        //   alert("Heelo");
-        //   console.log("Event = ", e);
-        // }}
+        onSelectEvent={onEvent}
       />
     </div>
   );
