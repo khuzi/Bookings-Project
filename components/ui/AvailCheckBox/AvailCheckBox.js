@@ -1,8 +1,9 @@
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -45,13 +46,39 @@ function StyledCheckbox(props) {
   );
 }
 
-export function CustomizedCheckbox({ txt }) {
+export function CustomizedCheckbox() {
+  const [avail, setAvail] = useState(true);
+  const [block, setBlock] = useState(false);
+
+  const onAvail = () => {
+    setAvail(true);
+    setBlock(false);
+  };
+
+  const onBlock = () => {
+    setAvail(false);
+    setBlock(true);
+  };
+
   return (
-    <div>
+    <Grid
+      container
+      justify="space-between"
+      alignItems="center"
+      style={{ background: "#fff", padding: "0 0.5rem", margin: "1rem 0" }}
+    >
       <FormControlLabel
-        label={<p style={{ fontSize: "12px" }}>{txt}</p>}
+        label={<p style={{ fontSize: "12px" }}>Availability</p>}
         control={<StyledCheckbox />}
+        checked={avail}
+        onClick={() => onAvail()}
       />
-    </div>
+      <FormControlLabel
+        label={<p style={{ fontSize: "12px" }}>Blocked</p>}
+        control={<StyledCheckbox />}
+        checked={block}
+        onClick={() => onBlock()}
+      />
+    </Grid>
   );
 }

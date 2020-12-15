@@ -1,26 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 
 import { Grid, Typography, Button } from "@material-ui/core";
-import { CustomizedCheckbox } from "../../ui";
+import { CustomizedCheckbox, SimpleModal } from "../../ui";
 
 import classes from "./options.module.css";
 
-const EdDel = ({ del }) => {
-  return <a className={classes.edDel}>{del ? "Delete" : "Edit"}</a>;
+const EdDel = ({ del, clicked }) => {
+  return (
+    <a
+      onClick={() => {
+        if (!del) {
+          clicked();
+        }
+      }}
+      className={classes.edDel}
+    >
+      {del ? "Delete" : "Edit"}
+    </a>
+  );
 };
 
 const Availability = () => {
-  return (
-    <Grid container justify="space-between" className={classes.availability}>
-      <Grid item xs={3}>
-        <CustomizedCheckbox txt="Availability" />
-      </Grid>
-      <Grid item xs={3}>
-        <CustomizedCheckbox txt="Blocked" />
-      </Grid>
-    </Grid>
-  );
+  return <CustomizedCheckbox />;
 };
 
 const BtnSave = ({ txt, btnClick }) => {
@@ -43,6 +45,12 @@ const BtnSave = ({ txt, btnClick }) => {
 };
 
 const Local = ({ setMenu, menu, detMenu, setDetMenu }) => {
+  const [open, setOpen] = useState(false);
+  const [timings, setTimings] = useState("12:30 -> 15:00");
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const router = useRouter();
   if (menu && !detMenu) {
     return (
@@ -78,13 +86,23 @@ const Local = ({ setMenu, menu, detMenu, setDetMenu }) => {
   } else {
     return (
       <>
+        <SimpleModal
+          open={open}
+          handleClose={handleClose}
+          edit
+          txt="Update Value"
+          done="Done"
+          cancel="Cancel"
+          value={timings}
+          setValue={setTimings}
+        />
         <Grid container justify="space-between" alignItems="center">
           <Typography variant="h6">Close Specific Times</Typography>
-          <EdDel />
+          <EdDel clicked={() => setOpen(true)} />
         </Grid>
         <Grid container justify="space-between" style={{ marginTop: "1rem" }}>
           <Typography variant="subtitle2" style={{ fontWeight: "lighter" }}>
-            12:30 - 15:00
+            {timings}
           </Typography>
           <EdDel del />
         </Grid>
@@ -141,8 +159,25 @@ const Local = ({ setMenu, menu, detMenu, setDetMenu }) => {
 };
 
 const Experience = () => {
+  const [open, setOpen] = useState(false);
+  const [price, setPrice] = useState("15");
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <>
+      <SimpleModal
+        open={open}
+        handleClose={handleClose}
+        edit
+        txt="Update Value"
+        done="Done"
+        cancel="Cancel"
+        value={price}
+        setValue={setPrice}
+      />
       <Grid container justify="space-between" alignItems="center">
         <Typography variant="h6">Availability Hours</Typography>
         <EdDel />
@@ -160,9 +195,9 @@ const Experience = () => {
       <Availability />
       <Grid container justify="space-between">
         <Typography style={{ fontWeight: "bold" }} variant="subtitle2">
-          Price : 15 £
+          Price : {price} £
         </Typography>
-        <EdDel />
+        <EdDel clicked={() => setOpen(true)} />
       </Grid>
       <BtnSave txt="Save" />
       <BtnSave txt="Cancel" />
