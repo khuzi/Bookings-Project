@@ -21,6 +21,7 @@
     "react": "17.0.1",
     "react-big-calendar": "^0.30.0",
     "react-csv": "^2.0.3",
+    "react-day-picker": "^7.4.8",
     "react-dom": "17.0.1",
     "react-query": "^2.26.2",
     "react-timeago": "^5.2.0"

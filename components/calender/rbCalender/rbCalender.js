@@ -61,6 +61,7 @@ export const MyCalender = () => {
   };
 
   const onEvent = (e) => {
+    console.log(e);
     const start = new Date(e.start);
     const end = new Date(e.end);
     setShowOptions(true);
