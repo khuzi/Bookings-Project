@@ -10,7 +10,7 @@ const EdDel = ({ del, clicked }) => {
   return (
     <a
       onClick={() => {
-        if (!del) {
+        if (!del && clicked) {
           clicked();
         }
       }}
