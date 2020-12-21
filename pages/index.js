@@ -23,11 +23,12 @@ export default function Home() {
     setOpen(false);
   };
 
+  
+
   return (
     <>
       <Head>
         <title>Calendar</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <CalenderModal open={open} handleClose={handleClose} />
       <PageTitle text="Calender" />

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Head from "next/head";
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 
@@ -24,7 +25,6 @@ function MyApp({ Component, pageProps }) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
-
     const handleRouteChange = () => {
       setLoading(true);
     };
@@ -39,26 +39,36 @@ function MyApp({ Component, pageProps }) {
       router.events.off("routeChangeStart", () => handleRouteComplete);
     };
   }, []);
+
   return (
-    <ThemeProvider theme={theme}>
-      <StylesProvider injectFirst>
-        <CssBaseline />
-        {loading ? (
-          <Spinner />
-        ) : (
-          <CalenderContext>
-            <DashboardFetch>
-              <BookingContext>
-                <Layout>
-                  <CssBaseline />
-                  <Component {...pageProps} />
-                </Layout>
-              </BookingContext>
-            </DashboardFetch>
-          </CalenderContext>
-        )}
-      </StylesProvider>
-    </ThemeProvider>
+    <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        ></meta>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <ThemeProvider theme={theme}>
+        <StylesProvider injectFirst>
+          <CssBaseline />
+          {loading ? (
+            <Spinner />
+          ) : (
+            <CalenderContext>
+              <DashboardFetch>
+                <BookingContext>
+                  <Layout>
+                    <CssBaseline />
+                    <Component {...pageProps} />
+                  </Layout>
+                </BookingContext>
+              </DashboardFetch>
+            </CalenderContext>
+          )}
+        </StylesProvider>
+      </ThemeProvider>
+    </>
   );
 }
 

@@ -25,9 +25,13 @@ const experienceEvents = [
 ];
 
 export const MyCalender = () => {
-  const { calType, setShowOptions, setStartDate, setEndDate } = useContext(
-    CalenderContext
-  );
+  const {
+    calType,
+    setShowOptions,
+    setStartDate,
+    setEndDate,
+    experienceData,
+  } = useContext(CalenderContext);
 
   const month_name = (dt) => {
     const mlist = [
@@ -75,7 +79,7 @@ export const MyCalender = () => {
         localizer={localizer}
         defaultDate={new Date()}
         defaultView="month"
-        events={calType === "locals" ? localEvents : experienceEvents}
+        events={calType === "locals" ? localEvents : experienceData}
         style={{ height: "100vh" }}
         onSelectEvent={onEvent}
       />
