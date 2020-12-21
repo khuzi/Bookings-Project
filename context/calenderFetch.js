@@ -15,7 +15,7 @@ export default function CalenderFetch({ children }) {
   useEffect(() => {
     const fetcher = async () => {
       fetch(
-        "http://nappetito-stage.herokuapp.com/api/calendar/experience/5ec503cc434dff29cf56633b?startDate=01-12-2020&endDate=31-12-2020"
+        "https://cors-anywhere.herokuapp.com/http://nappetito-stage.herokuapp.com/api/calendar/experience/5ec503cc434dff29cf56633b?startDate=01-12-2020&endDate=31-12-2020"
       )
         .then((res) => res.json())
         .then((data) => {
