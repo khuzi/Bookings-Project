@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 
 import Layout from "../components/layout/layout";
 import { Spinner } from "../components/ui";
 import { theme } from "../utility";
+
 import BookingContext from "../context/bookingFetch";
 import DashboardFetch from "../context/dashboardFetch";
+import CalenderContext from "../context/calenderFetch";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider, StylesProvider } from "@material-ui/core/styles";
@@ -18,7 +20,6 @@ function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
 
   React.useEffect(() => {
-    // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
@@ -45,14 +46,16 @@ function MyApp({ Component, pageProps }) {
         {loading ? (
           <Spinner />
         ) : (
-          <DashboardFetch>
-            <BookingContext>
-              <Layout>
-                <CssBaseline />
-                <Component {...pageProps} />
-              </Layout>
-            </BookingContext>
-          </DashboardFetch>
+          <CalenderContext>
+            <DashboardFetch>
+              <BookingContext>
+                <Layout>
+                  <CssBaseline />
+                  <Component {...pageProps} />
+                </Layout>
+              </BookingContext>
+            </DashboardFetch>
+          </CalenderContext>
         )}
       </StylesProvider>
     </ThemeProvider>

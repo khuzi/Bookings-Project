@@ -1,0 +1,39 @@
+.options {
+  color: #393939;
+}
+
+.edDel {
+  text-decoration: underline;
+  color: var(--primary-color);
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.menu {
+  margin-top: 2rem;
+}
+
+.menu_input input {
+  background: #fff;
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.menu_gap {
+  height: 172px;
+}
+
+.det_txtArea textarea {
+  margin-top: 1rem;
+  height: 100px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 0.5rem;
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+}

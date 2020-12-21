@@ -6,6 +6,7 @@ import { Grid, Typography } from "@material-ui/core";
 
 import { CustomizedRatings } from "../../components/ui";
 import { ReviewBox } from "../../components/reviews";
+import ReviewTab from "../../components/reviews/reviewTab/reviewTab";
 
 import classes from "../../styles/review.module.css";
 
@@ -61,10 +62,13 @@ export default function Review({ reviewLocal, reviewExperience }) {
       id = "5fa3eb9f9412c3fe0513ddc6";
       typeFetch = "publicExperience";
     }
-    fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
+    fetch(
+      `https://cors-anywhere.herokuapp.com/http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`
+    )
       .then((res) => res.json())
-      .then((data) => setReviewsSimple(data));
-  }, [type]);
+      .then((data) => setReviewsSimple(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   useEffect(() => {
     let id = "5ec503cc434dff29cf56633b";
@@ -73,10 +77,13 @@ export default function Review({ reviewLocal, reviewExperience }) {
       id = "5fa3eb9f9412c3fe0513ddc6";
       typeFetch = "bookingExperience";
     }
-    fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
+    fetch(
+      `https://cors-anywhere.herokuapp.com/http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`
+    )
       .then((res) => res.json())
-      .then((data) => setReviewsBooking(data));
-  }, [type]);
+      .then((data) => setReviewsBooking(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   useEffect(() => {
     let id = "5ec503cc434dff29cf56633b";
@@ -85,10 +92,13 @@ export default function Review({ reviewLocal, reviewExperience }) {
       id = "5fa3eb9f9412c3fe0513ddc6";
       typeFetch = "totalExperience";
     }
-    fetch(`http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`)
+    fetch(
+      `https://cors-anywhere.herokuapp.com/http://nappetito-stage.herokuapp.com/api/${typeFetch}Reviews/${id}`
+    )
       .then((res) => res.json())
-      .then((data) => setReviewsTotal(data));
-  }, [type]);
+      .then((data) => setReviewsTotal(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   const month_name = (dt) => {
     const date = new Date(dt);
@@ -118,17 +128,7 @@ export default function Review({ reviewLocal, reviewExperience }) {
         <title>Reviews</title>
       </Head>
       <div className={classes.review}>
-        <div className={classes.tutto}>
-          <div>Tutto</div>
-          {[5, 4, 3, 2, 1].map((el, i) => (
-            <div key={i}>
-              <div className={classes.rat_num}>{el}</div>
-              <div className={classes.rat_star}>
-                <CustomizedRatings rating={5} size="small" />
-              </div>
-            </div>
-          ))}
-        </div>
+        <ReviewTab />
         <Grid container className={classes.middle}>
           <Grid container item xs={8} className={classes.middle_main}>
             <Grid
@@ -166,7 +166,7 @@ export default function Review({ reviewLocal, reviewExperience }) {
                     ratText="Valutazione Complessiva"
                     review={text}
                     replied={replied}
-                    revRat={rating}
+                    revRat={Number(rating)}
                     comments={comments}
                   />
                 </Grid>

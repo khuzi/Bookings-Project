@@ -43,6 +43,7 @@ const Management = () => {
         bookingType={manageType}
         setBookingType={setManageType}
         management={true}
+        col={6}
       />
       {loading ? (
         <Spinner />

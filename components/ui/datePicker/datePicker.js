@@ -8,8 +8,6 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-import CalendarTodayOutlinedIcon from "@material-ui/icons/CalendarTodayOutlined";
-import { Typography } from "@material-ui/core";
 
 import { BookingContext } from "../../../context/bookingFetch";
 

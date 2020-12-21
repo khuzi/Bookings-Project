@@ -1,0 +1,42 @@
+.tutto {
+  justify-content: space-between;
+  width: 500px;
+  display: flex;
+  height: 2.5rem;
+  cursor: pointer;
+}
+
+.tutto > *:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.tutto > *:first-child .rat_star {
+  display: none;
+}
+
+.tutto .active {
+  background: var(--primary-color);
+  transition: background 0.3s ease-in-out;
+  color: #fff;
+}
+
+.active:active {
+  background: var(--primary-color);
+}
+
+.tutto > div {
+  display: flex;
+  border: 1px solid #f6f6f6;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.rat_num {
+  margin-top: 0.1rem;
+}
+
+.rat_star {
+  margin-top: 1.7rem;
+}

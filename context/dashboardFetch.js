@@ -66,18 +66,7 @@ export default function DashboardFetch({ children }) {
 
     fetcher("bookingExperiencesTotalCount", startDate, endDate, setExpBookings);
     fetcher("bookingExperiencesTotalGain", startDate, endDate, setEarnings);
-  }, [
-    bookings,
-    reviews,
-    completed,
-    deleted,
-    noShow,
-    startDate,
-    endDate,
-    expReviews,
-    expBookings,
-    earnings,
-  ]);
+  }, [startDate, endDate]);
 
   const local = [
     { src: "/images/stars.svg", txt: "Reviews", total: reviews },

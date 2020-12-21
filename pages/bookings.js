@@ -205,7 +205,8 @@ const Bookings = () => {
             </Grid>
           </Grid>
         </Grid>
-      </div>
+      </Grid>
+
       <Grid
         container
         justify="space-between"
