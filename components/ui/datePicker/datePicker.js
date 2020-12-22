@@ -69,7 +69,7 @@ export function DatePicker() {
                     transform="translate(541.5 145)"
                     fill="#e72311"
                     stroke="#e72311"
-                    stroke-width="0.5"
+                    strokeWidth="0.5"
                   />
                   <ellipse
                     id="Ellipse_3550"

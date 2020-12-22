@@ -51,15 +51,13 @@ export const MyCalender = () => {
     return mlist[dt.getMonth()].slice(0, 3);
   };
 
-	const handleSelect = ({ start, end }) => {
-		console.log(start);
-		console.log(end);
-		setShowOptions(true);
-		setStartDate(`${day_name(start)}, ${month_name(start)} ${start.getDate()}`);
-		setEndDate(`${day_name(end)}, ${month_name(end)} ${end.getDate()}`);
-
-
-	}
+  const handleSelect = ({ start, end }) => {
+    console.log(start);
+    console.log(end);
+    setShowOptions(true);
+    setStartDate(`${day_name(start)}, ${month_name(start)} ${start.getDate()}`);
+    setEndDate(`${day_name(end)}, ${month_name(end)} ${end.getDate()}`);
+  };
   const day_name = (dt) => {
     const dlist = [
       "Monday",
@@ -84,14 +82,15 @@ export const MyCalender = () => {
 
   return (
     <div className="rbCalender">
-      <Calendar selectable
+      <Calendar
+        selectable
         localizer={localizer}
         defaultDate={new Date()}
         defaultView="month"
         events={calType === "locals" ? localEvents : experienceData}
         style={{ height: "100vh" }}
         onSelectEvent={onEvent}
-				onSelectSlot={handleSelect}
+        onSelectSlot={handleSelect}
       />
     </div>
   );

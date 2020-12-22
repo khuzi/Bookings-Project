@@ -6,9 +6,9 @@ import { makeStyles } from "@material-ui/styles";
 import ListIcon from "@material-ui/icons/List";
 import TableChartIcon from "@material-ui/icons/TableChart";
 import ViewColumnIcon from "@material-ui/icons/ViewColumn";
-import IconButton from '@material-ui/core/IconButton';
+import IconButton from "@material-ui/core/IconButton";
 
-import { SearchOutlined } from '@material-ui/icons';
+import { SearchOutlined } from "@material-ui/icons";
 
 import { PageTitle, LgBtn, DatePicker } from "../components/ui";
 import { TabNav, ExportCSV } from "../components";
@@ -73,14 +73,13 @@ const useStyles = makeStyles((theme) => ({
       textTransform: "capitalize",
       background: "#fff",
       border: "0.5px solid lightgray",
-		borderRadius:"10px",
+      borderRadius: "10px",
       textAlign: "center",
       width: "100%",
       Height: "100%",
       padding: "0.5rem 0",
       cursor: "pointer",
       outline: "none",
-
     },
   },
 }));
@@ -125,54 +124,65 @@ const Bookings = () => {
   var search = "";
 
   const valueB = useContext(BookingContext);
-  const { bookings, deleted, noShow, completed, pending, month, date, setDate, setMonth, setName,   setBookingType,
-	  bookingType } = valueB;
+  const {
+    bookings,
+    deleted,
+    noShow,
+    completed,
+    pending,
+    month,
+    date,
+    setDate,
+    setMonth,
+    setName,
+    setBookingType,
+    bookingType,
+  } = valueB;
 
-	const month_name = (dt) => {
-		const mlist = [
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December",
-		];
-		return mlist[dt.getMonth()];
-	};
+  const month_name = (dt) => {
+    const mlist = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    return mlist[dt.getMonth()];
+  };
 
-	const handleToday = () => {
-		setDate(new Date());
-		const dateText = month_name(new Date()) + " " + new Date().getDate();
-		setMonth(dateText);
-	};
+  const handleToday = () => {
+    setDate(new Date());
+    const dateText = month_name(new Date()) + " " + new Date().getDate();
+    setMonth(dateText);
+  };
 
-	const handleNext = () => {
-		var next = date;
-		next.setDate(date.getDate()+1);
-		setDate(new Date(next));
-		const dateText = month_name(next) + " " + next.getDate();
-		setMonth(dateText);
-	};
+  const handleNext = () => {
+    var next = date;
+    next.setDate(date.getDate() + 1);
+    setDate(new Date(next));
+    const dateText = month_name(next) + " " + next.getDate();
+    setMonth(dateText);
+  };
 
-	const handlePrevious = () => {
-		var previous = date;
-		previous.setDate(date.getDate()-1);
-		setDate(new Date(previous));
-		const dateText = month_name(previous) + " " + previous.getDate();
-		setMonth(dateText);
-	};
+  const handlePrevious = () => {
+    var previous = date;
+    previous.setDate(date.getDate() - 1);
+    setDate(new Date(previous));
+    const dateText = month_name(previous) + " " + previous.getDate();
+    setMonth(dateText);
+  };
 
-	const handleName = () => {
-		console.log(search);
-		setName(search)
-	}
-
+  const handleName = () => {
+    console.log(search);
+    setName(search);
+  };
 
   return (
     <>
@@ -180,15 +190,20 @@ const Bookings = () => {
         <title>Bookings</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="mainWarper">
+      <div>
         <PageTitle text="Bookings" />
         <Grid container justify="space-between" alignItems="center">
-          <LgBtn setBookingType={setBookingType} bookingType={bookingType} calender/>
+          <LgBtn
+            setBookingType={setBookingType}
+            bookingType={bookingType}
+            calender
+            col={6}
+          />
           <Grid container item xs={6} justify="flex-end" alignItems="center">
             <Grid item>
               <input
                 placeholder="Search for name"
-				value={search}
+                value={search}
                 style={{
                   background: "#f6f6f6",
                   padding: "0.7rem",
@@ -197,16 +212,15 @@ const Bookings = () => {
                   outline: "none",
                 }}
               />
-				<IconButton style={{ marginRight: "auto"}} onClick={handleName}>
-					<SearchOutlined  />
-				</IconButton>
+              <IconButton style={{ marginRight: "auto" }} onClick={handleName}>
+                <SearchOutlined />
+              </IconButton>
               <Button className={classes.export}>Export</Button>
               <Button className={classes.print}>Print</Button>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-
+      </div>
       <Grid
         container
         justify="space-between"
@@ -222,7 +236,7 @@ const Bookings = () => {
           </Typography>
         </Grid>
         <Grid item xs={6}></Grid>
-        <Grid container item  spacing={2} xs={3}>
+        <Grid container item spacing={2} xs={3}>
           <Grid item xs={4} className={classes.cntrlBtn}>
             <button onClick={() => handleToday()}>Today</button>
           </Grid>
